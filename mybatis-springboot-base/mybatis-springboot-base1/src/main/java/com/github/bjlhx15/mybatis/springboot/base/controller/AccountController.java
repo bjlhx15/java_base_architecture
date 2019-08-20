@@ -1,8 +1,8 @@
-package com.github.bjlhx15.mybatis.springmvc.base.controller;
+package com.github.bjlhx15.mybatis.springboot.base.controller;
 
-import com.github.bjlhx15.mybatis.springmvc.base.model.AccountBalanceVo;
-import com.github.bjlhx15.mybatis.springmvc.base.model.auto.AccountBalance;
-import com.github.bjlhx15.mybatis.springmvc.base.service.IAccountBalanceService;
+import com.github.bjlhx15.mybatis.springboot.base.model.AccountBalanceVo;
+import com.github.bjlhx15.mybatis.springboot.base.model.auto.AccountBalance;
+import com.github.bjlhx15.mybatis.springboot.base.service.IAccountBalanceService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

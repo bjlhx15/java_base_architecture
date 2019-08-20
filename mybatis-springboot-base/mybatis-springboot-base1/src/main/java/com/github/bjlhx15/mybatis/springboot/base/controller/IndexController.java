@@ -1,4 +1,4 @@
-package com.github.bjlhx15.mybatis.springmvc.base.controller;
+package com.github.bjlhx15.mybatis.springboot.base.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

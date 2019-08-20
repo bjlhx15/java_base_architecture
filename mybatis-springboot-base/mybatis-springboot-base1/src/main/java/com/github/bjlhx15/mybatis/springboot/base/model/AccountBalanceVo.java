@@ -1,6 +1,6 @@
-package com.github.bjlhx15.mybatis.springmvc.base.model;
+package com.github.bjlhx15.mybatis.springboot.base.model;
 
-import com.github.bjlhx15.mybatis.springmvc.base.model.auto.AccountBalance;
+import com.github.bjlhx15.mybatis.springboot.base.model.auto.AccountBalance;
 
 public class AccountBalanceVo extends AccountBalance {
     private RequestPageInfo pageInfo;

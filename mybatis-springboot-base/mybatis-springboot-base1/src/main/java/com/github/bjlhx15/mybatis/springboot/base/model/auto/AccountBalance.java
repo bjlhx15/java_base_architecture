@@ -1,4 +1,4 @@
-package com.github.bjlhx15.mybatis.springmvc.base.model.auto;
+package com.github.bjlhx15.mybatis.springboot.base.model.auto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
