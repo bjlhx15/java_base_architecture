@@ -153,12 +153,23 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
+        <!--      添加如下 否则每次访问  java.lang.NumberFormatException: For input string: ""-->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.22</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>1.5.22</version>
+        </dependency>
         <!--        swagger2 end-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.58</version>
-<!--            <scope>test</scope>-->
+            <!--            <scope>test</scope>-->
         </dependency>
 
     </dependencies>
@@ -166,8 +177,8 @@
     <build>
         <plugins>
             <!-- debug Add Configurations→maven-->
-            <!-- 添加工作目录以及命令 clean jetty:run -DskipTests profiles=pom.xml-->
-            <!-- 添加工作目录以及命令 clean jetty:run -Dmaven.test.skip=true profiles=pom.xml-->
+            <!-- 添加工作目录以及命令； clean jetty:run -DskipTests； profiles=pom.xml-->
+            <!-- 添加工作目录以及命令； clean jetty:run -Dmaven.test.skip=true； profiles=pom.xml-->
             <!-- mvn jetty:run-->
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
@@ -178,7 +189,12 @@
                 <configuration>
 
                     <!-- 自动扫描时间参数，此处设置为10秒，为0表示 不自动扫描 -->
+                    <!-- jetty可以如下配置实现热部署，但是idea无法进行自动编译，所以需要如下快捷键
+                        Ctrl+Shift+F9，编译；Ctrl+F9，生成项目
+                    -->
                     <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <!--[manual|automatic]-->
+                    <reload>automatic</reload>
                     <httpConnector>
                         <port>8080</port>
                     </httpConnector>
