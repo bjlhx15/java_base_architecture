@@ -13,9 +13,10 @@
     </properties>
 
     <modules>
-        <module>mybatis-springboot-base1</module>
-        <module>tk-mybatis-springboot-base1</module>
-        <module>mp-mybatis-springboot-base1</module>
+        <module>eg-01-mybatis-01-base</module>
+        <module>eg-02-mybatis-plus-01-base</module>
+        <module>eg-03-mybatis-tk-01-base</module>
+        <module>eg-02-mybatis-plus-02-commonreponse</module>
     </modules>
     <!--    版本管理 只是声明依赖，并不实现引入-->
     <dependencyManagement>

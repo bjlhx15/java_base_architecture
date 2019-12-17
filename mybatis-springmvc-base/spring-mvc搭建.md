@@ -1,6 +1,6 @@
 mybatis
 druid
-spring
+spring-mvc
 log4j2
 swagger2：{ip}:{port}/{project-name}/swagger-ui.html
     引用pom，增加配置类，增加xml bean注入

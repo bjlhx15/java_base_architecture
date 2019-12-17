@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	">
+
+
+    <!--datasource-->
+    <!--    <import resource="applicationContext-mybatis.xml"/>-->
+
+    <!-- redisTemplate defination -->
+<!--    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">-->
+<!--        <property name="connectionFactory" ref="jedisConnectionFactory" />-->
+<!--    </bean>-->
+    <!--redis-->
+    <bean id="redisClusterConfiguration" class="org.springframework.data.redis.connection.RedisClusterConfiguration">
+        <constructor-arg>
+            <list>
+                <value>10.13.144.49:7000</value>
+                <value>10.13.144.49:7001</value>
+                <value>10.13.144.49:7002</value>
+                <value>10.13.144.49:7003</value>
+                <value>10.13.144.49:7004</value>
+                <value>10.13.144.49:7005</value>
+            </list>
+        </constructor-arg>
+    </bean>
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory">
+        <constructor-arg name="clusterConfiguration" ref="redisClusterConfiguration"/>
+    </bean>
+</beans>
