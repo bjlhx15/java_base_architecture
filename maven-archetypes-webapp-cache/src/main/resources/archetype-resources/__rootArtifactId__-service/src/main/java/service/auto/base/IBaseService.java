@@ -12,29 +12,31 @@ import java.util.List;
  */
 public interface IBaseService<T> {
 
-    boolean insert(T obj);
+    boolean insert(T entity);
 
     boolean insertBatch(List<T> objList);
 
-    boolean deleteLogic(T obj);
+    boolean deleteLogic(T entity);
 
-    boolean deleteLogicById(Serializable id);
+//    boolean deleteLogicById(Serializable id);
 
-    boolean deleteLogicByIds(Collection<? extends Serializable> idList);
+//    boolean deleteLogicByIds(Collection<? extends Serializable> idList);
 
     boolean updateWithId(T entity);
 
-    boolean updateByWrapper(T entity, Wrapper<T> updateWrapper);
+    boolean updateByWrapper(T entity, Wrapper<T> wrapper);
 
     List<T> select();
 
-    T selectById(Serializable id);
+    T selectOne(T entity);
 
-    List<T> selectList(T obj);
+//    T selectById(Serializable id);
 
-    Collection<T> selectByIds(Collection<? extends Serializable> idList);
+    List<T> selectList(T entity);
 
-    IPage<T> selectPage(T obj, Integer pageNo, Integer pageSize);
+//    Collection<T> selectByIds(Collection<? extends Serializable> idList);
+
+    IPage<T> selectPage(T entity, Integer pageNo, Integer pageSize);
 
     IPage<T> selectPage(T entity, IPage page);
 }

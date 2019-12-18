@@ -1,20 +1,21 @@
-package ${package}.controller.base;
+package com.aaa.test.controller.base;
 
+import com.aaa.test.service.auto.base.IBaseService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class BaseController<M extends IService<T>, T> {
+public abstract class BaseController<M extends IBaseService<T>, T> {
 
     @Autowired
     protected M service;
@@ -23,81 +24,77 @@ public abstract class BaseController<M extends IService<T>, T> {
         return this.service;
     }
 
-    @PostMapping("/save")
+    @PostMapping("/insert")
     @ResponseBody
-    public boolean save(@RequestBody T obj) {
-        return this.getBaseService().save(obj);
+    public boolean insert(@RequestBody T entity) {
+        return this.getBaseService().insert(entity);
     }
 
-    @PostMapping("/saveBatch")
+    @PostMapping("/insertBatch")
     @ResponseBody
-    public boolean saveBatch(@RequestBody List<T> objList) {
-        return this.getBaseService().saveBatch(objList);
+    public boolean insertBatch(@RequestBody List<T> objList) {
+        return this.getBaseService().insertBatch(objList);
     }
 
-    @PostMapping("/remove")
+    @PostMapping("/deleteLogic")
     @ResponseBody
-    public boolean remove(@RequestBody T t) {
-        Wrapper<T> wrapper = new QueryWrapper(t);
-        return this.getBaseService().remove(wrapper);
+    public boolean deleteLogic(@RequestBody T entity) {
+        return this.getBaseService().deleteLogic(entity);
     }
 
-    @GetMapping("/removeById")
+//    @GetMapping("/deleteLogicById")
+//    @ResponseBody
+//    public boolean deleteLogicById(Serializable id) {
+//        return this.getBaseService().deleteLogicById(id);
+//    }
+
+//    @GetMapping("/deleteLogicByIds")
+//    @ResponseBody
+//    public boolean deleteLogicByIds(Collection<? extends Serializable> idList) {
+//        return this.getBaseService().deleteLogicByIds(idList);
+//    }
+
+    @PostMapping("/updateByWrapper")
     @ResponseBody
-    public boolean removeById(Long id) {
-        return this.getBaseService().removeById(id);
+    public boolean updateByWrapper(@RequestBody T entity) {
+        Wrapper<T> wrapper = new QueryWrapper(entity);
+        return this.getBaseService().updateByWrapper(entity, wrapper);
     }
 
-    @GetMapping("/removeByIds")
+    @PostMapping("/updateWithId")
     @ResponseBody
-    public boolean removeByIds(List<Long> id) {
-        return this.getBaseService().removeByIds(id);
+    public boolean updateWithId(@RequestBody T entity) {
+        return this.getBaseService().updateWithId(entity);
     }
 
-    @PostMapping("/update")
-    @ResponseBody
-    public boolean update(@RequestBody T t) {
-        Wrapper<T> wrapper = new QueryWrapper(t);
-        return this.getBaseService().update(t, wrapper);
-    }
-
-    @PostMapping("/updateById")
-    @ResponseBody
-    public boolean updateById(@RequestBody T t) {
-        return this.getBaseService().updateById(t);
-    }
-
-    @GetMapping("/getById")
-    @ResponseBody
-    public T getById(Long id) {
-        return this.getBaseService().getById(id);
-    }
+//    @GetMapping("/selectById")
+//    @ResponseBody
+//    public T selectById(Serializable id) {
+//        return this.getBaseService().selectById(id);
+//    }
 
 
-    @PostMapping("/getOne")
+    @PostMapping("/selectOne")
     @ResponseBody
-    public T getOne(@RequestBody T t) {
-        Wrapper<T> wrapper = new QueryWrapper(t);
-        return this.getBaseService().getOne(wrapper);
+    public T selectOne(@RequestBody T entity) {
+        return this.getBaseService().selectOne(entity);
     }
 
-    @PostMapping("/list")
+    @PostMapping("/selectList")
     @ResponseBody
-    public List<T> list(@RequestBody T t) {
-        Wrapper<T> wrapper = new QueryWrapper(t);
-        return this.getBaseService().list(wrapper);
+    public List<T> selectList(@RequestBody T entity) {
+        return this.getBaseService().selectList(entity);
     }
 
-    @PostMapping("/listByIds")
-    @ResponseBody
-    public Collection<T> listByIds(List<Long> ids) {
-        return this.getBaseService().listByIds(ids);
-    }
+//    @PostMapping("/selectByIds")
+//    @ResponseBody
+//    public Collection<T> selectByIds(Collection<? extends Serializable> idList) {
+//        return this.getBaseService().selectByIds(idList);
+//    }
 
     @PostMapping("/page")
     @ResponseBody
-    public IPage<T> page(T t,Page<T> page) {
-        Wrapper<T> wrapper = new QueryWrapper(t);
-        return this.getBaseService().page(page, wrapper);
+    public IPage<T> page(T entity, Page<T> page) {
+        return this.getBaseService().selectPage(entity, page);
     }
 }

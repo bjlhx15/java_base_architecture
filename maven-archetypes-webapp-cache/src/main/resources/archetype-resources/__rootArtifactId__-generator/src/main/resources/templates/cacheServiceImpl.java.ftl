@@ -34,8 +34,8 @@ public class ${table.serviceImplName} extends BaseServiceImpl<${table.mapperName
     @Override
     @Transactional(rollbackFor = {Exception.class})
     @CacheEvict(value = "${entity}", allEntries = true)
-    public boolean insert(${entity} obj) {
-        return this.save(obj);
+    public boolean insert(${entity} entity) {
+        return this.save(entity);
     }
 
     @Override
@@ -48,24 +48,24 @@ public class ${table.serviceImplName} extends BaseServiceImpl<${table.mapperName
     @Override
     @Transactional(rollbackFor = {Exception.class})
     @CacheEvict(value = "${entity}", allEntries = true)
-    public boolean deleteLogic(${entity} obj) {
-        Wrapper wrapper = new QueryWrapper<>(obj);
+    public boolean deleteLogic(${entity} entity) {
+        Wrapper<${entity}> wrapper = new QueryWrapper<>(entity);
         return this.remove(wrapper);
     }
 
-    @Override
-    @Transactional(rollbackFor = {Exception.class})
-    @CacheEvict(value = "${entity}", allEntries = true)
-    public boolean deleteLogicById(Serializable id) {
-        return this.removeById(id);
-    }
+<#--    @Override-->
+<#--    @Transactional(rollbackFor = {Exception.class})-->
+<#--    @CacheEvict(value = "${entity}", allEntries = true)-->
+<#--    public boolean deleteLogicById(Serializable id) {-->
+<#--        return this.removeById(id);-->
+<#--    }-->
 
-    @Override
-    @Transactional(rollbackFor = {Exception.class})
-    @CacheEvict(value = "${entity}", allEntries = true)
-    public boolean deleteLogicByIds(Collection<? extends Serializable> idList) {
-        return this.removeByIds(idList);
-    }
+<#--    @Override-->
+<#--    @Transactional(rollbackFor = {Exception.class})-->
+<#--    @CacheEvict(value = "${entity}", allEntries = true)-->
+<#--    public boolean deleteLogicByIds(Collection<? extends Serializable> idList) {-->
+<#--        return this.removeByIds(idList);-->
+<#--    }-->
 
     @Override
     @Transactional(rollbackFor = {Exception.class})
@@ -77,8 +77,8 @@ public class ${table.serviceImplName} extends BaseServiceImpl<${table.mapperName
     @Override
     @Transactional(rollbackFor = {Exception.class})
     @CacheEvict(value = "${entity}", allEntries = true)
-    public boolean updateByWrapper(AccountBalance entity, Wrapper<${entity}> updateWrapper) {
-        return this.update(entity, updateWrapper);
+    public boolean updateByWrapper(AccountBalance entity, Wrapper<${entity}> wrapper) {
+        return this.update(entity, wrapper);
     }
 
     @Override
@@ -89,35 +89,42 @@ public class ${table.serviceImplName} extends BaseServiceImpl<${table.mapperName
 
     @Override
     @Cacheable(unless = "#result == null")
-    public AccountBalance selectById(Serializable id) {
-        return this.getById(id);
+    public ${entity} selectOne(${entity} entity) {
+        Wrapper<${entity}> wrapper = new QueryWrapper<>(entity);
+        return this.getOne(wrapper);
     }
+
+<#--    @Override-->
+<#--    @Cacheable(unless = "#result == null")-->
+<#--    public AccountBalance selectById(Serializable id) {-->
+<#--        return this.getById(id);-->
+<#--    }-->
 
     @Override
     @Cacheable(unless = "#result == null")
-    public List<${entity}> selectList(AccountBalance entity) {
-        Wrapper wrapper = new QueryWrapper<>(entity);
+    public List<${entity}> selectList(${entity} entity) {
+        Wrapper<${entity}> wrapper = new QueryWrapper<>(entity);
         return this.list(wrapper);
     }
 
-    @Override
-    @Cacheable(unless = "#result == null")
-    public Collection<${entity}> selectByIds(Collection<? extends Serializable> idList) {
-        return this.listByIds(idList);
-    }
+<#--    @Override-->
+<#--    @Cacheable(unless = "#result == null")-->
+<#--    public Collection<${entity}> selectByIds(Collection<? extends Serializable> idList) {-->
+<#--        return this.listByIds(idList);-->
+<#--    }-->
 
     @Override
     @Cacheable(unless = "#result == null")
     public IPage<${entity}> selectPage(${entity} entity, Integer pageNo, Integer pageSize) {
+        Wrapper<${entity}> wrapper = new QueryWrapper<>(entity);
         Page<${entity}> page = new Page<${entity}>(pageNo, pageSize);
-        Wrapper wrapper = new QueryWrapper<${entity}>(entity);
         return this.page(page, wrapper);
     }
 
     @Override
     @Cacheable(unless = "#result == null")
     public IPage<${entity}> selectPage(${entity} entity, IPage page) {
-        Wrapper wrapper = new QueryWrapper<${entity}>(entity);
+        Wrapper<${entity}> wrapper = new QueryWrapper<>(entity);
         return this.page(page, wrapper);
     }
 }

@@ -279,6 +279,7 @@ public class MybatisPlusGenerator {
                         .setXml(null)
                         .setService(null)
                         .setServiceImpl(null)
+//                        .setController(null);
 //                        .setController(new TemplateConfig().getController());
                         .setController("/templates/basecontroller.java");
                 break;
