@@ -3,7 +3,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.bjlhx15</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2</version>
     <artifactId>maven-archetypes-webapp-cache</artifactId>
 
     <packaging>jar</packaging>

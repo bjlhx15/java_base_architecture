@@ -3,7 +3,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.bjlhx15</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2</version>
     <artifactId>maven-archetypes-webapp</artifactId>
 
     <packaging>jar</packaging>
@@ -58,7 +58,7 @@
     <!-- 基础信息-->
     <name>${project.groupId}:${project.artifactId}</name>
     <description>pdf 生成</description>
-    <url>https://github.com/bjlhx15/java_base_architecture</url>
+    <url>https://github.com/bjlhx15/</url>
     <!--开源授权信息-->
     <licenses>
         <license>

@@ -4,6 +4,7 @@ import ${package}.enums.ErrorCodeEnum;
 import ${package}.exception.ResultException;
 import ${package}.response.BaseResponse;
 import org.slf4j.Logger;
+import com.alibaba.fastjson.JSON;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.AnnotatedElementUtils;
@@ -55,6 +56,13 @@ public class ResponseResultBodyAdvice implements ResponseBodyAdvice<Object> {
         if (body instanceof BaseResponse) {
             return body;
         }
+        //处理String类型作为响应值
+        if (!selectedContentType.equals(MediaType.APPLICATION_JSON)) {
+            if (body.getClass().getTypeName().equals("java.lang.String")) {
+                return JSON.toJSONString(BaseResponse.success(body));
+            }
+        }
+//
         return BaseResponse.success(body);
     }
 
@@ -116,7 +124,7 @@ public class ResponseResultBodyAdvice implements ResponseBodyAdvice<Object> {
             Exception ex, BaseResponse<?> body, HttpHeaders headers, HttpStatus status, WebRequest request) {
         if (HttpStatus.INTERNAL_SERVER_ERROR.equals(status)) {
             request.setAttribute(WebUtils.ERROR_EXCEPTION_ATTRIBUTE, ex, WebRequest.SCOPE_REQUEST);
-            body.setInnerErrorMsg(ex!=null?ex.getMessage():"");
+            body.setInnerErrorMsg(ex != null ? ex.getMessage() : "");
         }
         return new ResponseEntity<>(body, headers, status);
     }

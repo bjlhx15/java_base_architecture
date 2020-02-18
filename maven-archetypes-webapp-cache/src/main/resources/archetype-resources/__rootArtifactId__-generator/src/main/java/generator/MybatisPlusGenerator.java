@@ -132,11 +132,11 @@ public class MybatisPlusGenerator {
         }
 
         //实体类自动继承Entity,不需要也可以
-        strategy.setSuperEntityClass(String.format("%s.po.BasePO", packageName));
+//        strategy.setSuperEntityClass(String.format("%s.po.BasePO", packageName));
         //【实体】是否为lombok模型（默认 false）
         strategy.setEntityLombokModel(false);
         // 写于父类中的公共字段
-        strategy.setSuperEntityColumns("id","delflag","status","remark","created_datetime","updated_datetime");
+//        strategy.setSuperEntityColumns("id","delflag","status","remark","created_datetime","updated_datetime");
 
         // 自定义 service 父类
         //strategy.setSuperServiceClass(String.format("%s.service.base.IBaseService", packageName));
